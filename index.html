@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chapter01</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script src="./lib/react/react.development.js"></script>
+    <script src="./lib/react/react-dom.development.js"></script>
+    <script src="./lib/babel/babel.min.js"></script>
+    <script type="text/babel">
+        var text = "知识就像内-裤，看不见但很重要。"
+        function formatName(user) {
+            return user.firstName + ' ' + user.lastName
+        }
+        let headerDiv;
+        function GetGreeting(props) {
+            if(props.user) {
+                headerDiv = <div className="header">
+                            <h1>hello, {formatName(props.user)}!</h1>
+                            <h2>{text}</h2>
+                        </div>;
+            }else {
+                headerDiv = <div className="header">
+                            <h1>hello, Stranger!</h1>
+                            <h2>{text}</h2>
+                        </div>;
+            }
+            return headerDiv;
+        }
+        const user = {
+            firstName: 'Jack',
+            lastName: 'Peng'
+        }
+        const element = <GetGreeting user={user}/>
+        ReactDOM.render(
+            element,
+            document.getElementById('root')
+        )
+    </script>
+</body>
+</html>
