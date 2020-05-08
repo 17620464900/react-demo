@@ -16,22 +16,24 @@
     <script type="text/babel">
         var text = "知识就像内-裤，看不见但很重要。"
         function formatName(user) {
-            return user.firstName + ' ' + user.lastName
+            if(user) {
+                return user.firstName + ' ' + user.lastName
+            }else {
+                return 'stranger'
+            }
         }
         let headerDiv;
-        function GetGreeting(props) {
-            if(props.user) {
-                headerDiv = <div className="header">
-                            <h1>hello, {formatName(props.user)}!</h1>
-                            <h2>{text}</h2>
-                        </div>;
-            }else {
-                headerDiv = <div className="header">
-                            <h1>hello, Stranger!</h1>
-                            <h2>{text}</h2>
-                        </div>;
-            }
-            return headerDiv;
+        class GetGreeting extends React.Component {
+            render() {
+                return(
+                  <div className="header">
+                        <h1>hello, {formatName(this.props.user)}!</h1>
+                        <h2>{text}</h2>
+                  </div>
+                    
+                );
+                
+             }            
         }
         const user = {
             firstName: 'Jack',
